@@ -1,0 +1,33 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id       Int              @id @default(autoincrement())
+  name     String           @unique
+  price    Float
+  articles ProductArticle[]
+}
+
+model Article {
+  id       String           @id
+  name     String
+  stock    Int
+  products ProductArticle[]
+}
+
+model ProductArticle {
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  article   Article @relation(fields: [articleId], references: [id])
+  articleId String
+  amountOf  Int
+
+  @@id([productId, articleId])
+}

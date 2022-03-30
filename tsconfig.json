@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/http",
+    "src/tests"
+  ],
+  "baseUrl": "src",
+  "paths": {
+    "@/*": ["*"],
+    "@controllers/*": ["controllers/*"],
+    "@exceptions/*": ["exceptions/*"],
+    "@middlewares/*": ["middlewares/*"],
+    "@routes/*": ["routes/*"],
+    "@services/*": ["services/*"],
+  }
+}
